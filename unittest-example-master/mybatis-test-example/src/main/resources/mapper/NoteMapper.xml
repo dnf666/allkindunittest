@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.outofmemory.dbunit.dao.NoteMapper">
+    <select id="selectNoteById" parameterType="int"
+            resultType="cn.outofmemory.dbunit.entity.Note">
+        SELECT id, title, content, createTime FROM note WHERE id = #{noteId}
+    </select>
+    <insert id="insert" parameterType="cn.outofmemory.dbunit.entity.Note" useGeneratedKeys="true" keyProperty="id">
+        insert into Note(title, content, createTime) values(#{title}, #{content}, #{createTime})
+    </insert>
+    <update id="update" parameterType="cn.outofmemory.dbunit.entity.Note">
+        update Note set title=#{title}, content=#{content} where id =#{id}
+    </update>
+    <delete id="delete" parameterType="int">
+        delete from Note where id=#{id}
+    </delete>
+</mapper>

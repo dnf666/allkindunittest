@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	<context:annotation-config/>
+	<context:component-scan base-package="com.facishare.common.unittest"/>
+
+	<bean name="MongoMorphiaTest" class="com.facishare.common.unittest.mongo.MongoMorphiaTest">
+		<property name="datastore" ref="datastore"></property>
+	</bean>
+
+	<bean name="mongoMorphiaFactory" class="com.facishare.common.unittest.mongo.impl.MongoMorphiaFactory"></bean>
+	<bean name="datastore" factory-bean="mongoMorphiaFactory" factory-method="datastore"></bean>
+
+
+	<bean name="MongoTest" class="com.facishare.common.unittest.mongo.MongoTest">
+		<property name="mongo" ref="mongo"></property>
+	</bean>
+
+	<bean name="MongoFactory" class="com.facishare.common.unittest.mongo.impl.MongoFactory"></bean>
+	<bean name="mongo" factory-bean="MongoFactory" factory-method="mongo"></bean>
+</beans>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>fs-unittest-example</artifactId>
+        <groupId>com.facishare.common.unittest</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>fs-fcp-test-example</artifactId>
+    <properties>
+        <fcp-biz-server.version>1.0.3-SNAPSHOT</fcp-biz-server.version>
+        <fcp-client.version>1.0.3-SNAPSHOT</fcp-client.version>
+        <fcp-common.version>1.0.3-SNAPSHOT</fcp-common.version>
+        <fs-fcp-core.version>1.0.3-SNAPSHOT</fs-fcp-core.version>
+        <appserver-common-tools.version>1.0-SNAPSHOT</appserver-common-tools.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.facishare.common.unittest</groupId>
+            <artifactId>fs-unittest-common</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jmockit</groupId>
+            <artifactId>jmockit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jmockit</groupId>
+            <artifactId>jmockit-coverage</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.facishare</groupId>
+            <artifactId>fs-fcp-biz-server</artifactId>
+            <version>${fcp-biz-server.version}</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.facishare</groupId>-->
+            <!--<artifactId>fs-fcp-client</artifactId>-->
+            <!--<version>${fcp-client.version}</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.facishare</groupId>
+            <artifactId>fs-fcp-common</artifactId>
+            <version>${fcp-common.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.facishare</groupId>
+            <artifactId>fs-fcp-core</artifactId>
+            <version>${fs-fcp-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.facishare.appserver</groupId>
+            <artifactId>fs-appserver-common-tools</artifactId>
+            <version>${appserver-common-tools.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>fs-fcp-biz-server</artifactId>
+                    <groupId>com.facishare</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>fs-fcp-common</artifactId>
+                    <groupId>com.facishare</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+</project>

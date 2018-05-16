@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+    <context:annotation-config/>
+    <context:component-scan base-package="com.facishare.common.unittest"/>
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="fs-dubbo-test-example"/>
+    <!-- 协议使用 -->
+    <dubbo:protocol name="dubbo" port="28001" charset="utf-8"/>
+    <!-- 注册中心 -->
+    <dubbo:registry address="zookeeper://172.31.102.102:2181"/>
+
+    <dubbo:consumer timeout="120000" check="false"/>
+    <!--<dubbo:reference id="employeeServiceProvider"-->
+                     <!--interface="com.facishare.common.unittest.dubbo.api.IEmployeeService"-->
+                     <!--version="1.0.0"/>-->
+    <bean id="groupService" class="com.facishare.common.unittest.dubbo.consumer.GroupService">
+        <property name="iEmployeeService" ref="employeeServiceProvider"/>
+    </bean>
+
+    <bean id="employeeServiceProvider" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.facishare.common.unittest.dubbo.api.IEmployeeService"/>
+    </bean>
+</beans>

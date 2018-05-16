@@ -1,0 +1,5 @@
+build-job:
+  stage: build
+  script:
+   - FORMATTED_VERSION=`date +%Y%m%d`
+   - mvn clean test sonar:sonar -Dmaven.test.failure.ignore=true -Dsonar.projectVersion=${FORMATTED_VERSION}#${CI_BUILD_ID}
